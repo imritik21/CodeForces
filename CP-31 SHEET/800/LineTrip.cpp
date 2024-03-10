@@ -38,20 +38,17 @@ double eps = 1e-12;
 
 void solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    ll arr[n];
-    bool flag=0;
-    for(int i=0;i<n;i++) cin>>arr[i];
-    for(int i=0;i<k;i++){
-        if(arr[i]<=arr[n-i-1]){
-            flag=1;
-            continue;
-        }
-        if(arr[i]>arr[n-i-1]){
-            reverse(arr,arr+)
-        }
+    int n,x;
+    cin>>n>>x;
+    int prev=0;int ans=0;
+    for(int i=0;i<n;i++){
+        int a;
+        cin>>a;
+        ans=max(ans,a-prev);
+        prev=a;
     }
+    ans=max(ans,2*(x-prev));
+    cout<<ans<<endl;
 }
 int main()
 {
