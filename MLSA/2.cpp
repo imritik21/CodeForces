@@ -35,42 +35,26 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-
-void solve()
-{
-    ll n,m;
-    cin>>n>>m;
-    vector<vector<int>> c(n,vector<int>(m));
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            cin>>c[i][j];
+string canwemeet(int x0,int v0,int x1,int v1){
+    if(v0==v1){
+        if(x0==x1){
+            return "YES";
+        }else{
+            return "NO";
         }
     }
-    // one vector for column
-    vector<int> col[m];
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            col[j].push_back(c[i][j]);
-        }
+    if((x1-x0)%(v0-v1)==0 && (x1-x0)/(v0-v1)>0){
+        return "YES";
     }
-    ll ans=0;
-    for(int i=0;i<m;i++){
-        sort(col[i].begin(),col[i].end());
-        for(int j=n-1;j>=0;j--){
-            ans = ans + static_cast<ll>(j) * col[i][j] - static_cast<ll>(n - 1 - j) * col[i][j];
-
-        }
+    else{
+        return "NO";
     }
-    cout<<ans<<endl;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
-    for (int it = 1; it <= t; it++)
-    {
-        solve();
-    }
+    int x0,v0,x1,v1;
+    cin>>x0>>v0>>x1>>v1;
+    cout<<canwemeet(x0,v0,x1,v1)<<endl;
     return 0;
 }

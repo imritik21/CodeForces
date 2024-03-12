@@ -38,30 +38,27 @@ double eps = 1e-12;
 
 void solve()
 {
-    ll n,m;
-    cin>>n>>m;
-    vector<vector<int>> c(n,vector<int>(m));
+    int n,m,k;
+    cin>>n>>m>>k;
+    int left[n],right[m];
     for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            cin>>c[i][j];
-        }
+    cin>>left[i];
     }
-    // one vector for column
-    vector<int> col[m];
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            col[j].push_back(c[i][j]);
-        }
-    }
-    ll ans=0;
-    for(int i=0;i<m;i++){
-        sort(col[i].begin(),col[i].end());
-        for(int j=n-1;j>=0;j--){
-            ans = ans + static_cast<ll>(j) * col[i][j] - static_cast<ll>(n - 1 - j) * col[i][j];
 
+    for(int i=0;i<m;i++) {
+    cin>>right[i];
+    }
+    int sum=0,cnt=0;
+    int target;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            target=left[i]+right[j];
+            if(target<=k){
+                cnt++;
+            }
         }
     }
-    cout<<ans<<endl;
+    cout<<cnt<<endl;
 }
 int main()
 {

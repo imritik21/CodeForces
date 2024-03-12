@@ -35,33 +35,18 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-
+int minimumSocksToRemove(int numColors) {
+    // The minimum number of socks to ensure a matching pair is three
+    return numColors + 1;
+}
 void solve()
 {
-    ll n,m;
-    cin>>n>>m;
-    vector<vector<int>> c(n,vector<int>(m));
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            cin>>c[i][j];
-        }
-    }
-    // one vector for column
-    vector<int> col[m];
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            col[j].push_back(c[i][j]);
-        }
-    }
-    ll ans=0;
-    for(int i=0;i<m;i++){
-        sort(col[i].begin(),col[i].end());
-        for(int j=n-1;j>=0;j--){
-            ans = ans + static_cast<ll>(j) * col[i][j] - static_cast<ll>(n - 1 - j) * col[i][j];
+    int n;
+    cin >> n;
 
-        }
-    }
-    cout<<ans<<endl;
+    int minSocksToRemove = minimumSocksToRemove(n);
+
+    cout << minSocksToRemove <<endl;
 }
 int main()
 {
