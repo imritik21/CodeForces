@@ -1,0 +1,1 @@
+{"name":"Local: BinaryMinimal","url":"c:\\Users\\KIIT\\Desktop\\codeForces\\Contest\\codechef\\BinaryMinimal.cpp","tests":[{"id":1710789628968,"input":"2\n3 1\n000\n2 0\n11","output":"00\n11"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\KIIT\\Desktop\\codeForces\\Contest\\codechef\\BinaryMinimal.cpp","group":"local","local":true}

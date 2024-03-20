@@ -12,19 +12,25 @@ int main(){
         }
         cout<<endl;
     }
-    int count=0;
-    int maxC=0;
-    pair<int,int>p;
-    for(int i=0;i<n;i++){
-        for(int j=0;j<m;j++){
-            if(arr[i][j]=='*'){
-                count++;
-
-            }
-            if(count==2){
-                
+    int row1, row2, col1, col2;
+    for(int i = 0; i < n; i++) {
+        int c = 0, r1 = -1, r2 = -1;
+        for(int j = 0; j < m; j++) {
+            if(arr[i][j] == '*') {
+                c++;
+                if(r1 == -1) r1 = j;
+                else r2 = j;
             }
         }
-        cout<<endl;
+        if(c == 2) {
+            col1 = r1;
+            col2 = r2;
+            row1 = i;
+        } else if(c == 1) {
+            row2 = i;
+        }
     }
+    if(arr[row2][col1] != '*') cout<<row2 + 1<<" "<< col1+1;
+    else cout<<row2 + 1<<" "<<col2+1;
+
 }
