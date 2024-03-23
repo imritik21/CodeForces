@@ -6,17 +6,11 @@ signed main(){
     int n;
     cin>>n;
     int arr[n];
-    set<int> stt;
-    for(int i=0;i<n-1;i++)
-    {   
+    int totalsum=(n*(n+1))/2;
+    int rest=0;
+    for(int i=0;i<n-1;i++){
         cin>>arr[i];
-        stt.insert(arr[i]);
-        
+        rest+=arr[i];
     }
-    for(int i=0;i<n;i++){
-        if(!stt.count(arr[i])){
-            cout<< i;
-            break;
-        }
-    }
+    cout<<totalsum-rest<<endl;
 }
