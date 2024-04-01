@@ -3,6 +3,7 @@
 #pragma GCC optimize("unroll-loops")
 #include <bits/stdc++.h>
 using namespace std;
+
 typedef long long ll;
 typedef long double ld;
 typedef pair<int, int> p32;
@@ -37,38 +38,21 @@ double eps = 1e-12;
 
 void solve()
 {
-    int n,k,x;
-    cin>>n>>k>>x;
-    vector<int>res;
-    if(x != 1){
-        cout<<"YES"<<endl;
-        cout<<n<<endl;
-        for(int i=0;i<n;i++){
-            cout<<1<<" ";
-        }
-        cout<<endl;
+    int n;cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
     }
-    else
-    {
-        if (k >= 2 and n % 2 == 0)
-        {
-            cout << "YES\n";
-            cout << n / 2 << "\n";
-
-            for (int i = 0; i < n / 2; i++)
-                cout << 2 << " ";
-            cout << "\n";
+    int minDist=INT_MAX;
+    if((is_sorted(arr,arr+n))){
+        for(int i=0;i+1<n;i++){
+            int diff = arr[i+1]-arr[i];
+            minDist=min(minDist,diff);
         }
-        else if (k >= 3)
-        {
-            cout << "YES\n";
-            cout << n / 2 << "\n" << 3 << " ";
-            for (int i = 1; i < n / 2; i++)
-                cout << 2 << " ";
-            cout << "\n";
-        }
-        else
-            cout << "NO\n";
+        cout<<(minDist/2+1)<<endl;
+    }
+    else{
+        cout<<0<<endl;
     }
 }
 int main()
