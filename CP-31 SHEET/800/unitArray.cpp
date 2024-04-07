@@ -43,19 +43,19 @@ void solve()
     int arr[n];
     for(int i=0;i<n;i++) cin>>arr[i];
 
-    int countNeg=0,countPos=0;
+    int countNeg=0,Pos=0;
     for(int i=0;i<n;i++){
         if(arr[i]==-1){
             countNeg++;
         }
         else{
-            countPos++;
+            Pos++;
         }
     }
     int  ans=0;
-    while(countNeg>countPos){
+    while(countNeg>Pos){
         countNeg--;
-        countPos++;
+        Pos++;
         ans++;
     }
     if(countNeg%2==1){
