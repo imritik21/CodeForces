@@ -38,76 +38,21 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-
+// gcd and steps
+// maxm excitement and min moves
 void solve()
 {
-    int n, m;
-    cin >> n >> m;
-    char arr[n][m];
-    int cntB=0,cntW=0;
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            cin >> arr[i][j];
-        }
-    }
-    // we need  to find that is either black/white is present in all 
-    // four starting rows and colmn or not 
-    // chechk for white if there exits a single of them in each 4 then its YES
-    for(int j=0;j<m;j++){
-        if(arr[0][j]=='W'){
-            cntW++;
-            break;
-        } 
-    }
-    for(int j=0;j<m;j++){
-        if(arr[0][j]=='B'){
-            cntB++;
-            break;
-        } 
-    }
-    for(int j=0;j<m;j++){
-        if(arr[n-1][j]=='W'){
-            cntW++;
-            break;
-        }
-    }
-    for(int j=0;j<m;j++){
-        if(arr[n-1][j]=='B'){
-            cntB++;
-            break;
-        }
-    }
-    for(int j=0;j<n;j++){
-        if(arr[j][0]=='W'){
-            cntW++;
-            break;
-        }
-    }
-    for(int j=0;j<n;j++){
-        if(arr[j][0]=='B'){
-            cntB++;
-            break;
-        }
-    }
-    for(int j=0;j<n;j++){
-        if(arr[j][m-1]=='W'){
-            cntW++;
-            break;
-        }
-    }
-    for(int j=0;j<n;j++){
-        if(arr[j][m-1]=='B'){
-            cntB++;
-            break;
-        }
-    }
-    if(cntB>=4 || cntW>=4){
-        cout<<"YES"<<endl;
+    ll a,b;
+    cin>>a>>b;
+    ll diff=abs(b-a);
+    if(diff==0){
+        cout<<0<<" "<<0<<endl;
+        return;
     }
     else{
-        cout<<"NO"<<endl;
+        ll one=(diff-a%diff);
+        ll two = a%diff;
+        cout<<diff<<" "<<min(one,two)<<endl;
     }
 }
 int main()
