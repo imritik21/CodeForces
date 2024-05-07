@@ -38,27 +38,39 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-const int N=1000;
 
-void solve(){
-        int n;
-        int p[N];
-        cin>>n;
-        for(int i=0;i<n;i++){
-            cin>>p[i];
+void solve()
+{
+    ll n;
+    cin>>n;
+    if(n==1){
+        cout<<0<<endl;
+        return;
+    }
+    if(n%3 != 0){
+        cout<<"-1"<<endl;
+        return;
+    }
+    int cnt=0;
+    bool flag=true;
+    while(n != 1){
+        if(n%6 == 0){
+            n=n/6;
+            cnt++;
         }
-
-        for(int i=1;i<n-1;i++){
-            if(p[i]>p[i-1] && p[i]>p[i+1]){
-   
-                cout<<"YES"<<endl;
-                cout<<i<<" "<<i+1<<" "<<i+2<<endl;
-                return;
-            }
+        else if(n%3 == 0 && n%6 !=0){
+            n=n*2;
+            cnt++;
         }
-
-        cout<<"NO"<<endl;
-
+        if(n%3 != 0 && n != 1){
+            flag=false;
+            break;
+        }
+    }
+    if(flag)
+    cout<<cnt<<endl;
+    else
+    cout<<"-1"<<endl;
 }
 int main()
 {

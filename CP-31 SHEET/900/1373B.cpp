@@ -38,27 +38,55 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-const int N=1000;
 
-void solve(){
-        int n;
-        int p[N];
-        cin>>n;
-        for(int i=0;i<n;i++){
-            cin>>p[i];
+void solve()
+{
+    string str;
+    cin>>str;
+    int n=str.length();
+    int cnt1=0,cnt0=0;
+    for(int i=0;i<n;i++){
+        if(str[i]=='0') cnt0++;
+        else cnt1++;
+    }
+    if(cnt0 == 0 || cnt1 ==0){
+        cout<<"NET"<<endl;
+        return;
+    }
+    if(cnt0 ==1 || cnt1 ==1){
+        cout<<"DA"<<endl;
+        return;
+    }
+    // both odd
+    if(cnt1%2 !=0 && cnt0%2 !=0){
+        cout<<"DA"<<endl;
+        return;
+    }
+    // both even
+    if(cnt1%2 ==0 && cnt0%2 ==0){
+        cout<<"NET"<<endl;
+        return;
+    }
+    // evn odd
+    if(cnt0%2==0 && cnt1%2 !=0){
+        if(cnt0<cnt1){
+            cout<<"NET"<<endl;
         }
-
-        for(int i=1;i<n-1;i++){
-            if(p[i]>p[i-1] && p[i]>p[i+1]){
-   
-                cout<<"YES"<<endl;
-                cout<<i<<" "<<i+1<<" "<<i+2<<endl;
-                return;
-            }
+        else{
+            cout<<"DA"<<endl;
         }
-
-        cout<<"NO"<<endl;
-
+        return;
+    }
+    // odd even
+    if(cnt0%2!=0 && cnt1%2 ==0){
+        if(cnt0<cnt1){
+            cout<<"DA"<<endl;
+        }
+        else{
+            cout<<"NET"<<endl;
+        }
+        return;
+    }
 }
 int main()
 {
