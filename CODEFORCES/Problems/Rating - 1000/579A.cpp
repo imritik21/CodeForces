@@ -3,7 +3,8 @@ using namespace std;
 #define ll long long
 #define mod 1000000007
 int main(){
-    int n;
+    ll n;
     cin>>n;
-    if(n & )
+    int cnt= __builtin_popcount(n);
+    cout<<cnt;
 }
