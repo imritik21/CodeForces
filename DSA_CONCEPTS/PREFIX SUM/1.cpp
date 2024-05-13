@@ -15,4 +15,6 @@ int main(){
         cout<<prefixSum[i]<<" ";
     }
     cout<<endl;
+    // lets say i want ele at 3rd index
+    cout<<prefixSum[3]-prefixSum[2]<<endl;
 }

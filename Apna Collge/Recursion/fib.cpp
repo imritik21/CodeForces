@@ -1,20 +1,14 @@
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
-#define ll long long
-#define mod 1000000007
-// 0 1 1 2 3 5 8 13 21
-// 1 2 3 4 5 6 7 8  9
-vector<int> res;
-void nthFib(int n){
-    if(n==0 || n==1){
-        res.push_back(n);
-        return;
-    }
-
-    
+int Fibonacci(int n)
+{
+if (n <= 1) 
+return n; 
+return Fibonacci(n - 1) + Fibonacci(n - 2); 
 }
-int main(){
-    int n;
-    cin>>n;
-    cout<<nthFib(n)<<endl;
+int main()
+{
+int n;
+cin >> n;
+cout << Fibonacci(n -1);
 }
