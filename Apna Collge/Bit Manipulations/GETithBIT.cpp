@@ -3,7 +3,7 @@ using namespace std;
 #define ll long long
 #define mod 1000000007
 void getithBit(int n,int index){
-    int bitmask=1<<index;
+    int bitmask=1<<index; // to get ith bit 1 leftshift ith and then & to get the bit
     if((n & bitmask) == 0){
         // even
         cout<<"0"<<endl;
@@ -12,7 +12,7 @@ void getithBit(int n,int index){
         cout<<"1"<<endl;
     }
 }
-int setithBIT(int n,int i){
+int setithBIT(int n,int i){ // reach ith bit using 1<<i and then | to set it
     int bitmask=1<<i;
     return n|bitmask;
 }
