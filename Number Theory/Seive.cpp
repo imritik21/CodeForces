@@ -24,5 +24,5 @@ int main (){
     cin>>n;
     solve();
     cout<<primes[n];
-
+    
 }
