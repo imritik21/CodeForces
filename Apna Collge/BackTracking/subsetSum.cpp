@@ -4,8 +4,33 @@ using namespace std;
 #define mod 1000000007
 vector<vector<int>> final;
 vector<int> curr;
+int sum=0;
+int sumOfsubset(vector<int> arr){
+    int n = arr.size();
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+    }
+    return sum;
+}
+int xorSum(vector<int> arr){
+    int n = arr.size();
+    // if(n==1){
+    //     return arr[0];
+    // }
+    if(n==0){
+        return 0;
+    }
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum^=arr[i];
+    }
+    return sum;
+}
 void subsetSum(vector<int>& nums,int n,int ind){
     if(ind == n){
+        // sum+=sumOfsubset(curr);
+        sum+=xorSum(curr);
         final.push_back(curr);
         return;
     }
@@ -19,7 +44,7 @@ int main()
 {
     int n;
     cin>>n;
-    vector<int> nums;
+    vector<int> nums(n);
     for(int i=0;i<n;i++) cin>>nums[i];
     subsetSum(nums,n,0);
     for(int i=0;i<final.size();i++){
@@ -28,4 +53,5 @@ int main()
         }
         cout<<endl;
     }
+    cout<<"sum: "<<sum<<endl;
 }

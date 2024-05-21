@@ -28,7 +28,7 @@ bool comp(pair<int,int>ab,pair<int,int>cd){
     if(ab.first!=cd.first){
         return ab.first<cd.first;
     }
-    return ab.second<cd.second;
+    return ab.second>cd.second;
 }
 int main(){
     // lets say we need to sort it according to its absolute value
@@ -41,14 +41,16 @@ int main(){
     // }
 
 
-    pair<int,int> arr[5]={
-        {1,2},
-        {2,4},
-        {1,3},
-        {1,5},
-        {3,2}
-    };
-    sort(arr,arr+5);
+    // pair<int,int> arr[5]={
+    //     {1,2},
+    //     {2,4},
+    //     {1,3},
+    //     {1,5},
+    //     {3,2}
+    // };
+    vector<pair<int,int> arr;
+    for
+    sort(arr,arr+5,comp);
     for(auto it: arr){
         cout<<it.first<<" "<<it.second<<endl;;
     }
