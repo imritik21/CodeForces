@@ -2,6 +2,7 @@
 using namespace std;
 #define ll long long
 #define mod 1000000007
+
 void stockSpan(vector<int>& stock, vector<int>& span){
     stack<int> st;
     span[0]=1;
