@@ -34,7 +34,7 @@ void solvehpf()
     for(int i=0;i<N;i++){
         hpf[i]=i; // initially
     }
-    for(int i=2;i*i<N;i++){
+    for(int i=2;i<N;i++){
         if(hpf[i]==i){
             // not this will mark all multiple of i with i
             for(int j=2*i;j<N;j+=i){

@@ -12,7 +12,7 @@ void seiveFun()
         {
             for (int j = i * i; j <= N; j += i)
             {
-                seive[i] = 0;
+                seive[j] = 0;
             }
         }
     }
