@@ -20,5 +20,16 @@ ll countWays(int n){
 int main(){
     int n;
     cin>>n;
-    cout<<countWays(n);
+    // cout<<countWays(n);
+    vector<int> dp(n+1,-1);
+    // initialize base case
+    dp[-1]=0;dp[0]=1;
+    // meaning for index
+    // here dp[i] willl store no of ways for each ith pos
+    
+    // now fill- bottom to up
+    for(int i=1;i<=n;i++){
+        dp[i]=dp[i-1]+dp[i-2];
+    }
+    cout<<dp[n];
 }
