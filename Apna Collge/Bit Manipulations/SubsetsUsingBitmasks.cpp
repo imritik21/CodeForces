@@ -12,7 +12,6 @@ int main(){
             if(mask & (1<<i)){
                 cout<<arr[i]<<" ";
             }
-
         }
         cout<<endl;
     }
