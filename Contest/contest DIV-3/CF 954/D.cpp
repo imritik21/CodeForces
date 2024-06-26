@@ -38,38 +38,45 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-
-void solve()
-{
-    string a, b;
-    cin >> a >> b;
-    int n = a.size();
-    int m = b.size();
-    int ans=0;
-    // for(int len=1;len<=min(n,m);len++){
-    //     for(int i=0; i+len <= n; i++){
-    //         for(int j=0; j+len<= m; j++){
-    //             if(a.substr(i,len)==b.substr(j,len)){
-    //                 ans = max(ans,len);
-    //             }
-    //         }
-    //     }
-    // }
-    vector<vector<int>> dp(n+1,vector<int>(m+1,0));
-
-    for(int i=1;i<n+1;i++){
-        for(int j=1;j<m+1;j++){
-            if(a[i-1]==b[j-1]){
-                dp[i][j]=1+dp[i-1][j-1];
-                ans=max(ans,dp[i][j]);
-            }
-            else{
-                dp[i][j]=0;
-            }
+ll calc(const string& s, const vector<char>& ops) {
+    vector<ll> term;
+    ll curr = s[0] - '0';
+    for (int i = 0; i < ops.size(); i++) {
+        if (ops[i] == '+') {
+            term.push_back(curr);
+            curr = s[i + 1] - '0';
+        } else {
+            curr *= s[i + 1] - '0';
         }
     }
-    // ans is common ele
-    cout<<(n-ans)+(m-ans)<<endl;
+    term.push_back(curr);
+    ll res = 0;
+    for (ll t : term) {
+        res += t;
+    }
+    return res;
+}
+
+void find(const string& s, vector<char>& ops, int idx, long long& min_res) {
+    if (idx == s.size()-1) {
+        min_res = min(min_res, calc(s, ops));
+        return;
+    }
+    ops[idx - 1] = '+';
+    find(s, ops, idx + 1, min_res);
+    ops[idx - 1] = '*';
+    find(s, ops, idx + 1, min_res);
+}
+
+void solve() {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    vector<char> ops(n - 1);
+    ll min_res = LLONG_MAX;
+    find(s, ops, 1, min_res);
+    cout << min_res << endl;
 }
 int main()
 {

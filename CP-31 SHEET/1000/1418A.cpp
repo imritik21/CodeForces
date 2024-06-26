@@ -41,35 +41,19 @@ double eps = 1e-12;
 
 void solve()
 {
-    string a, b;
-    cin >> a >> b;
-    int n = a.size();
-    int m = b.size();
-    int ans=0;
-    // for(int len=1;len<=min(n,m);len++){
-    //     for(int i=0; i+len <= n; i++){
-    //         for(int j=0; j+len<= m; j++){
-    //             if(a.substr(i,len)==b.substr(j,len)){
-    //                 ans = max(ans,len);
-    //             }
-    //         }
-    //     }
-    // }
-    vector<vector<int>> dp(n+1,vector<int>(m+1,0));
-
-    for(int i=1;i<n+1;i++){
-        for(int j=1;j<m+1;j++){
-            if(a[i-1]==b[j-1]){
-                dp[i][j]=1+dp[i-1][j-1];
-                ans=max(ans,dp[i][j]);
-            }
-            else{
-                dp[i][j]=0;
-            }
-        }
+    ll x,y,k;
+    cin>>x>>y>>k; 
+    ll coal = k; // total coal req
+    ll stick=(coal)*y; // total stick i req
+    stick+=k; // k more sticks 
+    stick--; // initially i have 1
+    ll total = stick/(x-1);
+    ll rem = stick%(x-1);
+    if(rem){
+        // i need req more
+        total++;
     }
-    // ans is common ele
-    cout<<(n-ans)+(m-ans)<<endl;
+    cout<<total+k<<endl;
 }
 int main()
 {

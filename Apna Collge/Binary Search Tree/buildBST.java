@@ -134,6 +134,14 @@ public class buildBST {
 
         return root;
     }
+    public static boolean isBst(Node root,Node min,Node max){
+        if(root==null){
+            return true;
+        }
+        if(min != null && root.data<=min.data) return false;
+        if(max != null && root.data>= max.data) return false;
+        return isBst(root.left, min, root)&& isBst(root.right, root, max);
+    }
     public static void main(String[] args) {
         int values[] = {8,5,3,6,10,11,14};
         Node root = null;
@@ -152,5 +160,8 @@ public class buildBST {
         // printRoot2Leaf(root, path);
         Mirror(root);
         inorder(root);
+        System.out.println();
+        System.out.println(isBst(root, null, null));
+
     }
 }

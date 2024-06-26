@@ -41,35 +41,14 @@ double eps = 1e-12;
 
 void solve()
 {
-    string a, b;
-    cin >> a >> b;
-    int n = a.size();
-    int m = b.size();
-    int ans=0;
-    // for(int len=1;len<=min(n,m);len++){
-    //     for(int i=0; i+len <= n; i++){
-    //         for(int j=0; j+len<= m; j++){
-    //             if(a.substr(i,len)==b.substr(j,len)){
-    //                 ans = max(ans,len);
-    //             }
-    //         }
-    //     }
-    // }
-    vector<vector<int>> dp(n+1,vector<int>(m+1,0));
-
-    for(int i=1;i<n+1;i++){
-        for(int j=1;j<m+1;j++){
-            if(a[i-1]==b[j-1]){
-                dp[i][j]=1+dp[i-1][j-1];
-                ans=max(ans,dp[i][j]);
-            }
-            else{
-                dp[i][j]=0;
-            }
-        }
+    int x,y,z;
+    cin>>x>>y>>z;
+    int minDist=INT_MAX;
+    for(int i=1;i<=10;i++){
+        int curr = abs(x-i)+abs(y-i)+abs(z-i);
+        minDist=min(minDist,curr);
     }
-    // ans is common ele
-    cout<<(n-ans)+(m-ans)<<endl;
+    cout<<minDist<<endl;
 }
 int main()
 {

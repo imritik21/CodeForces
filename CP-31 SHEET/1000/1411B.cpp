@@ -38,38 +38,26 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-
+bool ok(ll n){
+    ll temp=n;
+    while(n>0){
+        int rem = n%10;
+        if(rem==0){
+            n/=10;
+            continue;
+        }
+        if(temp%rem !=0) return false;
+        // els
+        n=n/10;
+    }
+    return true;
+}
 void solve()
 {
-    string a, b;
-    cin >> a >> b;
-    int n = a.size();
-    int m = b.size();
-    int ans=0;
-    // for(int len=1;len<=min(n,m);len++){
-    //     for(int i=0; i+len <= n; i++){
-    //         for(int j=0; j+len<= m; j++){
-    //             if(a.substr(i,len)==b.substr(j,len)){
-    //                 ans = max(ans,len);
-    //             }
-    //         }
-    //     }
-    // }
-    vector<vector<int>> dp(n+1,vector<int>(m+1,0));
-
-    for(int i=1;i<n+1;i++){
-        for(int j=1;j<m+1;j++){
-            if(a[i-1]==b[j-1]){
-                dp[i][j]=1+dp[i-1][j-1];
-                ans=max(ans,dp[i][j]);
-            }
-            else{
-                dp[i][j]=0;
-            }
-        }
-    }
-    // ans is common ele
-    cout<<(n-ans)+(m-ans)<<endl;
+    ll n;
+    cin>>n;
+    while(!ok(n))n++;
+    cout<<n<<endl;
 }
 int main()
 {
