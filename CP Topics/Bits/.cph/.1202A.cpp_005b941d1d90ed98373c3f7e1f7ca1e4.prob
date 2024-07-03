@@ -1,0 +1,1 @@
+{"name":"Local: 1202A","url":"c:\\Users\\KIIT\\Desktop\\codeForces\\CP Topics\\Bits\\1202A.cpp","tests":[{"id":1720018499076,"input":"4\n1010\n11\n10001\n110\n1\n1\n1010101010101\n11110000\n","output":"1\n3\n0\n0\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\KIIT\\Desktop\\codeForces\\CP Topics\\Bits\\1202A.cpp","group":"local","local":true}
