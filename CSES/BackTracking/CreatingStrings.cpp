@@ -30,7 +30,7 @@ int main(){
     }
     subsets(0,str.length(),f,"");
     cout<<cnt<<endl;
-    for(int i=0;i<allString.size();i++){
-        cout<<allString[i]<<endl;
-    }
+    // for(int i=0;i<allString.size();i++){
+    //     cout<<allString[i]<<endl;
+    // }
 }
