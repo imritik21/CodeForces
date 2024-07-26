@@ -23,11 +23,17 @@ bool targetSum(int number[],int sum,int n){
         for(int j=1;j<sum+1;j++){
             int v = number[i-1];
             // valid id arr[i]<req sum abhi wala
-            if(v<=j && dp[i-1][j-v]==true){ // 1 ele nikal kr and uska sum htane pe kya true h
-                dp[i][j]=true; // agr chota wala true hai to i,j bhi 
-            }// invalid
-            else if(dp[i-1][j]==true){
-                dp[i][j]=dp[i-1][j];
+            // if(v<=j && dp[i-1][j-v]==true){ // 1 ele nikal kr and uska sum htane pe kya true h
+            //     dp[i][j]=true; // agr chota wala true hai to i,j bhi 
+            // }// invalid
+            // else if(dp[i-1][j]==true){
+            //     dp[i][j]=dp[i-1][j];
+            // }
+            if(v<=j){
+                dp[i][j] = dp[i-1][j]||dp[i-1][j-v];
+            }
+            else{
+                dp[i][j]=dp[i-1][j];// invalid so exclude
             }
         }
     }
