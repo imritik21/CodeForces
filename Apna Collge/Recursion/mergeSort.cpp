@@ -19,7 +19,7 @@ void merge(int l,int r,int mid){
     // compare krte waqt INT_MAX se chota hoga to rest ele apne aap fill 
     int l_i=0; // left  array me jaane wala index
     int r_i=0;
-    // ye loop merge kr rha hai
+    // this loop merges
     for(int i=l;i<=r;i++){
         if(L[l_i]<= R[r_i]){
             a[i]=L[l_i];

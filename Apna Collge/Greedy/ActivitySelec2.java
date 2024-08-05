@@ -1,8 +1,8 @@
 import java.util.*;
 public class ActivitySelec2 {
     public static void main(String[] args) {
-        int start[] ={0,1,3,5,5,8};
-        int end [] = {6,2,4,7,9,9};
+        int start[] ={1,3,0,5,8,5};
+        int end [] = {2,4,6,7,9,9};
 
         // here end time is not sorted so we need to sort it
         // so that we cn greedily select 1st activity
@@ -21,11 +21,12 @@ public class ActivitySelec2 {
         ans.add(act[0][0]); // added 1st idx
         int endTIme= act[0][2];
         for(int i=1;i<end.length;i++){
-            if(act[i][1]>=endTIme){
+            if(act[i][1]>endTIme){
                 maxAct++;
                 ans.add(act[i][0]);
                 endTIme=act[i][2]; // update
             }
         }
+        System.out.println(maxAct);
     }
 }
