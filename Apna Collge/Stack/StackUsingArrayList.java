@@ -21,9 +21,7 @@ public class StackUsingArrayList {
         //peek
         public static int peek(){
             return list.get(list.size()-1);
-            list.
         }
-        
     }
     public static void main(String[] args) {
     

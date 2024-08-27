@@ -89,6 +89,33 @@ public class buildTree {
                 }
             }
         }
+        public static void levelOrd(Node root){
+            if(root==null) return;
+            Queue<int> q = new LinkedList<>();
+
+            q.add(root);
+            q.add(null);
+            while(!q.isEmpty()){
+                Node currNode = q.remove();
+                if(currNode==null){
+                    if(q.isEmpty()){
+                        return;
+                    }
+                    else{
+                        q.add(null);
+                    }
+                }
+                else{
+                    System.out.println(currNode.data+" ");
+                    if(currNode.left!=null){
+                        q.add(currNode.left);
+                    }
+                    if(currNode.right!=null){
+                        q.add(currNode.right);
+                    }
+                }
+            }
+        }
         public static int height(Node root){
             if(root==null){
                 return 0;

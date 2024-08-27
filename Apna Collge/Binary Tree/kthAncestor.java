@@ -46,6 +46,16 @@ public class kthAncestor {
         // else both are not null means root is ans 
         return root;
     }
+    static Node lca(Node root,int n1,int n2){
+        if(root==null || root.data==n1||root.data==n2){
+            return root;
+        }
+        Node leftlca = lca(root.left,n1,n2);
+        Node rightlca = lca(root.right,n1,n2);
+        if(leftlca==null) return rightlca;
+        if(rightlca==null) return leftlca;
+        return root;
+    }
     static int lcaDist(Node root,int n){
         if(root==null){
             return -1;// base case
@@ -61,6 +71,18 @@ public class kthAncestor {
         }
         else if(lDist==-1) return rDist+1; // bcz we're on upper node
         else return lDist+1;
+    }
+    static int lcadist(Node root,int n){
+        if(root==null) return -1;
+        if(root.data==n) return 0;
+        int ldist = lcadist(root.left, n);
+        int rdist = lcadist(root.right, n);
+
+        if(ldist==-1 && rdist==-1){
+            return -1;
+        }
+        else if(ldist==-1) return rdist+1;
+        else ldist+1;
     }
     static int minDist(Node root,int n1,int n2){
         Node lca = LCA(root, n1, n2);
