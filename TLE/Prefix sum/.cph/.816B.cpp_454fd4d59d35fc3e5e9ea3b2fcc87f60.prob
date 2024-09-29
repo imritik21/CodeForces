@@ -1,0 +1,1 @@
+{"name":"Local: 816B","url":"c:\\Users\\KIIT\\Desktop\\codeForces\\TLE\\Prefix sum\\816B.cpp","tests":[{"id":1725657697981,"input":"3 2 4\n91 94\n92 97\n97 99\n92 94\n93 97\n95 96\n90 100\n","output":"3\n3\n0\n4\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\KIIT\\Desktop\\codeForces\\TLE\\Prefix sum\\816B.cpp","group":"local","local":true}
