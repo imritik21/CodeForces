@@ -2,16 +2,25 @@
 using namespace std;
 #define ll long long
 #define mod 1000000007
-
+void print(vector<vector<int>>&dp,int n,int w){
+    for(int i=0;i<n+1;i++){
+        for(int j=0;j<w+1;j++){
+            cout<<dp[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    vector<int> val = {15, 4, 10, 45, 30};
-    vector<int> weight = {2, 5, 1, 3, 4};
+    // vector<int> val = {15, 4, 10, 45, 30};
+    // vector<int> weight = {2, 5, 1, 3, 4};
+    vector<int> val = {1,2,3};
+    vector<int> weight = {4,5,1};
     int n = val.size();
-    int w = 7;
+    int w = 5;
     // i need to find the max val/profit i can make by taking max weight of w
     // so we'll use dp to chosse wheter elements wants to come or not if they are vlid
     // since we have 2 variable here as my w will decrease when i'll put something in my sack
@@ -37,6 +46,7 @@ int main()
             }
         }
     }
-    cout<<dp[n][w];
+    cout<<dp[n][w]<<endl;
+    print(dp,n,w);
     return 0;
 }
