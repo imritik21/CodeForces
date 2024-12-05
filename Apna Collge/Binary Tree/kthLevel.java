@@ -52,7 +52,7 @@ public class kthLevel {
         root.right.right = new Node(7);
 
         int k=3;
-        // printKLevel(root,1,k);
-        helper(root, 5, 1);
+        printKLevel(root,1,k);
+        // helper(root, 5, 1);
     }
 }

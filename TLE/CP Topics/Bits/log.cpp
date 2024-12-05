@@ -13,18 +13,18 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n = 9;
+    int n = 8;
     
     // Corrected to use floating-point division
-    double logResult = log2(static_cast<double>(n) / 4); // or log2(n / 4.0)
+    double logResult = log2(static_cast<double>(n)); // or log2(n / 4.0)
     
     int ans = static_cast<int>(logResult);    // Truncated version
     int ans2 = static_cast<int>(ceil(logResult)); // Ceil version
 
-    // cout << ans << " " << ans2 << "\n"; // Output: 1 2
+    cout << ans << " " << ans2 << "\n"; // Output: 1 2
 
-    ll mask = 1LL<<1;
-    cout<<mask;
+    // ll mask = 1LL<<1;
+    // cout<<mask;
 
     return 0;
 }

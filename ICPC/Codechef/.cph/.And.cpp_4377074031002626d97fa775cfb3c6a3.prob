@@ -1,0 +1,1 @@
+{"name":"Local: And","url":"c:\\Users\\KIIT\\Desktop\\codeForces\\ICPC\\Codechef\\And.cpp","tests":[{"id":1732385311242,"input":"3\n5\n1 1 -2 1 2\n5\n1 1 1 1 1\n3\n-2 1 2\n","output":"0 1 4 2 3 \n0 1 2 3 4 \n2 0 1 \n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\KIIT\\Desktop\\codeForces\\ICPC\\Codechef\\And.cpp","group":"local","local":true}
