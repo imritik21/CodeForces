@@ -1,0 +1,6 @@
+problems for today's lab
+1. wap to find the first and last m digits from k power of m
+2. define three num x,y and p. Compute x^y%p in log
+3. Given a and b . Find the number of possible values that x can get
+    so that the equation a%x = b
+four. WAP to display the kth_user_Input bit of an Integer 

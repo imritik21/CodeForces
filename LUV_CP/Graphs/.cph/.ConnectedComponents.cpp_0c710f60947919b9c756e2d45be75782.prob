@@ -1,0 +1,1 @@
+{"name":"Local: ConnectedComponents","url":"c:\\Users\\KIIT\\Desktop\\codeForces\\LUV_CP\\Graphs\\ConnectedComponents.cpp","tests":[{"id":1735363892507,"input":"8 5\n1 2\n2 3\n2 4\n3 5\n6 7","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\KIIT\\Desktop\\codeForces\\LUV_CP\\Graphs\\ConnectedComponents.cpp","group":"local","local":true}

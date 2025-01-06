@@ -34,3 +34,8 @@ int main()
     cout<<"Address: "<<add<<endl;
     return 0;
 }
+
+//  append the conent of one file with another
+// write a program to read a file to display the first and last statement of a file
+// wap to read a file having the addition program in c modify to a mul program and saving the file
+// modify one c file program with another c file program 
