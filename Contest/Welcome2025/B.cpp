@@ -54,8 +54,27 @@ void solve()
         return;
     }
     if(k>=n){
-        
+        cout<<1<<endl;
+        return;
     }
+    // now k will always be less than n
+    vector<pair<int,int>> store;
+    for(auto &ele:mp){
+        store.push_back({ele.second,ele.first});
+    }
+    sort(all(store));
+    int cnt=mp.size();
+    for(int i=0;i<store.size();i++){
+        int curr = store[i].first;
+        if(curr<=k){
+            k-=curr;
+            cnt--;
+        }
+        else{
+            break;
+        }
+    }
+    cout<<cnt<<endl;
 }
 int main()
 {
@@ -68,3 +87,9 @@ int main()
     }
     return 0;
 }
+
+// 11 4
+// 1 1 2 2 3 3 3 3 4 4 4
+// --
+// 3 3 3 3 3 3 3 3 4 4 4
+// 1 1 2 2 4 4 4 3 3 3 3
