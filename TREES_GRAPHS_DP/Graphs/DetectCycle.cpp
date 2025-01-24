@@ -10,7 +10,8 @@ bool dfs(int node,int par,vector<vector<int>>&adj,vector<int>&vis){
             if(dfs(it,node,adj,vis)) return true;
         }
         else if(it!=par){
-            // vis but not it's parent means cycle
+            // vis but not came from it's parent means
+            // there is a cycle
             return true;
         }
     }

@@ -1,3 +1,6 @@
+
+/* Programmed by : https://www.linkedin.com/in/ritik-shankar-537741264/ */
+
 #pragma GCC optimize("Ofast")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,fma")
 #pragma GCC optimize("unroll-loops")
@@ -35,31 +38,36 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-int num=1e6+10;
+
+void solve() {
+    int n, m;
+    cin >> n;
+    vector<int> a(n);
+    forn(i, n) cin >> a[i];
+
+    cin >> m;
+    vector<int> b(m);
+    forn(i, m) cin >> b[i];
+    vector<int> prefa(n+1,0),prefb(m+1,0);
+    prefa[0]=a[0];
+    for(int i=1;i<n+1;i++)prefa[i]=prefa[i-1]+a[i];
+    prefb[0]=b[0];
+    for(int i=1;i<m+1;i++)prefb[i]=prefb[i-1]+b[i];
+    int m1=0,m2=0;
+    for(int i=0;i<n;i++)m1=max(m1,prefa[i]);
+    for(int i=0;i<m;i++)m2=max(m2,prefb[i]);
+
+    cout << m1+m2 << endl;
+}
+
 int main()
 {
     fast_cin();
-    ll n, m;
-    cin >> n >> m;
-    ll A[n], B[m];
-    for (int i = 0; i < n; i++)
-        cin >> A[i];
-    for (int i = 0; i < m; i++)
-        cin >> B[i];
-    vector<long long> vec;
-    unordered_set<int>stt;
-    for(int i=0;i<m;i++){
-        stt.insert(B[i]);
+    ll t;
+    cin >> t;
+    for (int it = 1; it <= t; it++)
+    {
+        solve();
     }
-    for(int i=0;i<n;i++){
-        if(stt.find(A[i])==stt.end()){
-            vec.push_back(A[i]);
-        }
-    }
-
-    for(int i=0;i<vec.size();i++){
-        cout<<vec[i]<<" ";
-    }
-    cout<<endl;
     return 0;
 }
