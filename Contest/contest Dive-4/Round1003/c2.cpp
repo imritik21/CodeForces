@@ -43,7 +43,7 @@ void solve()
 {
     int n, m;
     cin >> n >> m;
-    vector<int> arr(n), b(m);
+    vector<ll> arr(n), b(m);
     forn(i, n) cin >> arr[i];
     forn(i, m) cin >> b[i];
     sort(all(b));
@@ -52,74 +52,35 @@ void solve()
         cout << "YES" << endl;
         return;
     }
-    for (int i = 0; i + 1 < n; i++)
+    bool flag=false;
+    arr[0]=min(arr[0],b[0]-arr[0]);
+    for (int i = 1; i  < n; i++)
     {
-        if(i==0 && arr[i]>arr[i+1]){
-            // cout << "here " << i << endl;
-            int lb = 0;
-            int ub = m - 1;
-            int ele = INT_MIN;
-            while (lb <= ub)
-            {
-                int mid = (lb + ub) / 2;
-                // cout << "mid ele req" << mid << " " << b[mid] << " " << b[mid] - arr[i] << endl;
-                if (b[mid] - arr[i] >= INT_MIN && b[mid] - arr[i] <= arr[i + 1])
-                {
-                    // cout << "1st" << endl;
-                    ele = b[mid] - arr[i];
-                    break;
-                }
-                else if (b[mid] - arr[i] > arr[i + 1])
-                {
-                    // cout << "2nd" << endl;
-                    ub = mid - 1;
-                }
-                else if (b[mid] - arr[i] < arr[i - 1])
-                {
-                    // cout << "3rd" << endl;
-                    lb = mid + 1;
-                }
+        auto idx = lower_bound(all(b),arr[i-1]+arr[i])-b.begin();
+
+        ll x = arr[i];
+        if(idx<m){
+            if(x<arr[i-1]){
+                x=b[idx]-arr[i];
             }
-            if (ele != INT_MIN)
-                arr[i] = ele;
+            else x=min(x,b[idx]-arr[i]);
         }
-        if ( i>0 && i<n )
-        {
-            // cout << "here " << i << endl;
-            int lb = 0;
-            int ub = m - 1;
-            int ele = INT_MIN;
-            while (lb <= ub)
-            {
-                int mid = (lb + ub) / 2;
-                // cout << "mid ele req" << mid << " " << b[mid] << " " << b[mid] - arr[i] << endl;
-                if (b[mid] - arr[i] >= arr[i - 1] && b[mid] - arr[i] <= arr[i + 1])
-                {
-                    // cout << "1st" << endl;
-                    ele = b[mid] - arr[i];
-                    break;
-                }
-                else if (b[mid] - arr[i] > arr[i + 1])
-                {
-                    // cout << "2nd" << endl;
-                    ub=mid-1;
-                }
-                else if (b[mid] - arr[i] < arr[i - 1])
-                {
-                    // cout << "3rd" << endl;
-                    lb=mid+1;
-                }
-            }
-            if (ele != INT_MIN)
-                arr[i] = ele;
+        arr[i]=x;
+        if(arr[i]<arr[i-1]){
+            // cout<<"NO"<<endl;
+            // return;
+            flag=true;
         }
     }
     // for(auto& ele:arr)cout<<ele<<" ";
     // cout<<endl;
-    if(is_sorted(all(arr))){
-        cout<<"YES"<<endl;
-    }
-    else cout<<"NO"<<endl;
+    if(flag)cout<<"NO"<<endl;
+    else
+    cout<<"YES"<<endl;
+    // if(is_sorted(all(arr))){
+    //     cout<<"YES"<<endl;
+    // }
+    // else cout<<"NO"<<endl;
 }
 int main()
 {
