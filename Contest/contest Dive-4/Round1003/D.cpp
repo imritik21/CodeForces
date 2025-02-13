@@ -36,21 +36,37 @@ double eps = 1e-12;
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);                    \
     cout.tie(NULL)
-#define all(x) (x).begin(), (x).end()
+#define all(x) (x).rbegin(), (x).rend()
 #define sz(x) ((ll)(x).size())
 
 void solve()
 {
-    int n,a,b;
-    cin>>n>>a>>b;
-    if(n==a && a==b){
-        cout<<"YES"<<endl;
-        return;
+    ll n,m;
+    cin>>n>>m;
+    vector<pair<ll,int>> vec;
+    vector<vector<ll>> arr(n,vector<ll>(m));
+    for(int i=0;i<n;i++){
+        ll curr=0;
+        for(int j=0;j<m;j++){
+            cin>>arr[i][j];
+            curr+=arr[i][j];
+        }
+        vec.push_back({curr,i});
     }
-    if(n>=(a+b+2)){
-        cout<<"YES"<<endl;
+    sort(all(vec));
+    ll ans = 0;
+    int x = n * m;
+    for(int i=0;i<n;i++){
+        int idx = vec[i].second;
+        for(int j=0;j<m;j++){
+            ans+=(arr[idx][j]*x);
+            x--;
+        }
+        // cout<<idx<<" ";
+        // cout<<vec[i].first<<" "<<vec[i].second<<endl;
     }
-    else cout<<"NO"<<endl;
+    // cout<<endl;
+    cout<<ans<<endl;
 }
 int main()
 {
