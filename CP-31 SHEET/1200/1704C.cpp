@@ -39,40 +39,43 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
+void solve()
+{
+    ll n,m;
+    cin>>n>>m;
+    vector<ll> arr(m);
+    forn(i,m)cin>>arr[i];
+    sort(all(arr));
+    vector<ll> diff;
+    for(int i=0;i+1<m;i++){
+        ll curr = (arr[i+1]-arr[i]-1);
+        diff.push_back(curr);
     }
-    else {
-        return p1.first<p2.first;
+    diff.push_back((n-arr[m-1])+(arr[0]-1));
+    // if(arr[m-1]!=n)diff.push_back(n-arr[m-1]+1);
+    sort(diff.rbegin(),diff.rend());
+    // for(auto& it:diff)cout<<it<<" ";
+    // cout<<endl;
+    ll rmv=0,day=0;
+    for(int i=0;i<diff.size();i++){
+        diff[i]-=2*day;
+        if(diff[i]<=0)break;
+        if(diff[i]==1){
+            rmv+=1;
+            day+=1;
+        }
+        else {
+            rmv+=(diff[i]-1);
+            day+=2;
+        }
     }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
-    for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
-    }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
+    // if(arr[m-1]!=n){
+    //     // cout<<"hello"<<endl;
+    //     ll left = n-(arr[m-1]+day);
+    //     rmv+=left;
     // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
-    }
-    cout<< ans<<endl;
+    // cout<<rmv<<endl;
+    cout<<(n-rmv)<<endl;
 }
 int main()
 {

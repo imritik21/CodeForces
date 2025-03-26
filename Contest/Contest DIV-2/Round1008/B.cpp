@@ -39,40 +39,25 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
+void solve()
+{
+    int n, k;
+    cin >> n >> k;
+    ///  4 4
+    //  1 2 3 4
+    //  3 3 4 3 even
+    //  4 4 4 3 odd
+    vector<int> arr(n,0);
+    if(k%2==0){
+        forn(i,n)arr[i]=n-1;
+        arr[n-2]=n;
     }
-    else {
-        return p1.first<p2.first;
+    else{
+        forn(i,n)arr[i]=n;
+        arr[n-1]=n-1;
     }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
-    for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
-    }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
-    // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
-    }
-    cout<< ans<<endl;
+    forn(i,n)cout<<arr[i]<<" ";
+    cout<<endl;
 }
 int main()
 {

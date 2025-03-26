@@ -38,41 +38,45 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
-
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
-    }
-    else {
-        return p1.first<p2.first;
-    }
+ll query(int l, int r, vector<ll> &p)
+{
+    return p[r] - (l ? p[l - 1] : 0);
 }
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
+void solve()
+{
+    int n,s;
+    cin>>n>>s;
+    vector<ll> a(n),p(n);
+    forn(i, n)
+    {
+        cin >> a[i];
+        p[i] = a[i];
+        if (i)
+            p[i] += p[i - 1];
     }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
+
+    int ans = INT_MAX;
+
+    for (int i = 0; i < n; ++i)
+    {
+        int l = i, r = n - 1, pos = -1;
+        while (l <= r)
+        {
+            int mid = l + r >> 1;
+            if (query(i, mid, p) <= s)
+            {
+                pos = mid;
+                l = mid + 1;
+            }
+            else
+                r = mid - 1;
+        }
+        if (pos == -1 || query(i, pos, p) != s)
+            continue;
+        ans = min(ans, n - (pos - i + 1));
     }
-    for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
-    }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
-    // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
-    }
-    cout<< ans<<endl;
+
+    cout << (ans == INT_MAX ? -1 : ans) << endl;
 }
 int main()
 {

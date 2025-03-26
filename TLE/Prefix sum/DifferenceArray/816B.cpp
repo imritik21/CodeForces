@@ -28,6 +28,9 @@ void solve()
         arr[x]++;
         arr[y+1]--;
     }
+    // for(int i=90;i<=101;i++){
+    //     cout<<arr[i]<<" ";
+    // }
     vector<ll> pre1(200007,0);
     vector<ll> grtK(200007,0);
     pre1[0]=arr[0];
@@ -36,6 +39,10 @@ void solve()
         if(pre1[i]>=k){
             grtK[i]++;
         }
+    }
+    for (int i = 90; i <= 101; i++)
+    {
+        cout << grtK[i] << " ";
     }
     vector<ll> pre2(200007,0);
     pre2[0]=grtK[0];
@@ -53,7 +60,7 @@ void solve()
         int l,r;
         cin>>l>>r;
         // cout<<pre2[r]<<" "<<pre2[l]<<endl;
-        cout<<pre2[r]-pre2[l-1]<<endl;
+        // cout<<pre2[r]-pre2[l-1]<<endl;
     }
 }
 int main()

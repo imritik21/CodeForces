@@ -39,40 +39,27 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
-    }
-    else {
-        return p1.first<p2.first;
-    }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
+void solve()
+{
+    ll n,m;cin>>n>>m;
+    map<ll,ll> cnt;
+    auto isqrt = [&](ll x){
+        ll val = sqrt(x)+5;
+        while(val*val>x)val--;
+        return val;
+    };
+    vector<ll> a(n),r(n);
+    forn(i,n)cin>>a[i];
+    forn(i, n) cin >> r[i];
     for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
+        ll aa = a[i],rr=r[i];
+        for(ll x=aa-rr;x<=aa+rr;x++){
+            cnt[x] = max(cnt[x],2*isqrt(rr*rr-(x-aa)*(x-aa))+1);
+        }
     }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
-    // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
-    }
-    cout<< ans<<endl;
+    ll ans=0;
+    for(auto& it:cnt)ans+=it.second;
+    cout<<ans<<endl;
 }
 int main()
 {

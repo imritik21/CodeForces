@@ -39,40 +39,38 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
+void solve()
+{
+    ll n;
+    cin>>n;
+    string str;
+    cin>>str;
+    // 3 5 6  = 3+3+5 = 11
+    // select k as min and remove all its multiples
+    //3,4,8,9,11,14,15 = 3+4+4+9+11+14+15
+    vector<int> arr(n+1,0);
+    for(int i=1;i<=n;i++){
+        arr[i]=(int)(str[i-1]-'0');
+        // cout<<arr[i]<<" ";
     }
-    else {
-        return p1.first<p2.first;
-    }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
+    // cout<<endl;
+    ll ans=0;
+    vector<int> vis(n+1,0);
     for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
+        if(str[i]=='0'){
+            int curr = i+1;
+            for(ll j=i+1;j<=n;j+=curr){
+                if(str[j-1]=='1'){
+                    break;
+                }
+                if(vis[j-1]==1)continue;
+                vis[j-1]=1;
+                // cout<<j<<" ";
+                ans+=curr;
+            }
+        }
     }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
-    // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
-    }
-    cout<< ans<<endl;
+    cout<<ans<<endl;
 }
 int main()
 {

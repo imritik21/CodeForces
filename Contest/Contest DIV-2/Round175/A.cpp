@@ -39,40 +39,44 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
+void solve()
+{
+    ll n;
+    cin>>n;
+    if(n==0){
+        cout<<1<<endl;
+        return;
     }
-    else {
-        return p1.first<p2.first;
+    if(n==1){
+        cout<<2<<endl;
+        return;
     }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
+    if(n==2){
+        cout<<3<<endl;
+        return;
     }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
+    ll rem = n/15;
+    
+    if(n%15==0){
+        ll ans = rem*3+1;
+        cout<<ans<<endl;
+        return;
     }
-    for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
+    if (n % 15 == 1)
+    {
+        ll ans = rem * 3 + 2;
+        cout << ans << endl;
+        return;
     }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
-    // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
+    if (n % 15 == 2)
+    {
+        ll ans = rem * 3 + 3;
+        cout << ans << endl;
+        return;
     }
-    cout<< ans<<endl;
+    ll ans = (rem+1)*3;
+    if(n%15==0)ans++;
+    cout<<ans<<endl;
 }
 int main()
 {

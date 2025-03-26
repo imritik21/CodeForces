@@ -1,0 +1,1 @@
+{"name":"Local: GridPath","url":"c:\\Users\\KIIT\\Desktop\\codeForces\\CSES\\DP\\GridPath.cpp","tests":[{"id":1741508325034,"input":"4\n....\n.*..\n...*\n*...","output":"3\r\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\KIIT\\Desktop\\codeForces\\CSES\\DP\\GridPath.cpp","group":"local","local":true}

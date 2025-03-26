@@ -39,40 +39,42 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
-    }
-    else {
-        return p1.first<p2.first;
-    }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
+void solve()
+{
+    int n,m;
+    cin>>n>>m;
+    int arr[n][m];
+    map<int,int> mp;
     for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
+        for(int j=0;j<m;j++){
+            cin>>arr[i][j];
+        }
     }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
-    // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
+    vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            int curr = arr[i][j];
+            for(auto& dir: directions){
+                int nrow = i+dir.first;
+                int ncol = j+dir.second;
+                if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && curr==arr[nrow][ncol]){
+                    mp[arr[i][j]]=2;
+                    break;
+                }
+            }
+            if(mp[arr[i][j]]!=2)mp[arr[i][j]]=1;
+        }
     }
-    cout<< ans<<endl;
+    int sum=0;
+    int maxi=-1;
+    for(auto& it:mp){
+        sum+=it.second;
+        if(maxi<it.second){
+            maxi=it.second;
+        }
+        // cout<<it.first<<" "<<it.second<<endl;
+    }
+    cout<<sum-maxi<<endl;
 }
 int main()
 {

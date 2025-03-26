@@ -39,40 +39,35 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
+void solve()
+{
+    ll n,x;
+    cin>>n>>x;
+    vector<ll> arr(n);
+    forn(i,n)cin>>arr[i];
+    sort(all(arr));
+    vector<ll> prefix(n,0);
+    prefix[0]=arr[0];
+    for(ll i=1;i<n;i++){
+        prefix[i] = prefix[i-1]+arr[i];
     }
-    else {
-        return p1.first<p2.first;
-    }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
-    for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
-    }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
+    ll ans=0;
+    // for(ll i=n-1;i>=0;i--){
+    //     ll diff = x-prefix[i];
+    //     if(diff==0 && diff/(i+1)>=0){
+    //         ans+=(diff/(i+1))+1;
+    //     }
     // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
+    for (ll i = n - 1; i >= 0; i--)
+    {
+        ll diff = x - prefix[i];
+
+        if (diff >= 0)
+        {
+            ans += (diff / (i + 1)) + 1;
+        }
     }
-    cout<< ans<<endl;
+    cout<<ans<<endl;
 }
 int main()
 {

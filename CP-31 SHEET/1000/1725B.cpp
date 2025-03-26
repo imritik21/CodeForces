@@ -39,46 +39,40 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
+void solve()
+{
+    ll n,d;
+    cin>>n>>d;
+    vector<ll> arr(n);
+    forn(i,n)cin>>arr[i];
+    sort(arr.rbegin(),arr.rend());
+    int cnt=0;
+    // 180/90
+    int res=0;
+    for(int i=0;i<n;i++)if(arr[i]>d)res++;
+    int i=0,j=n-1;
+    // 100 90 80 70 60 50 
+    //     i  ij     j
+    //     1  2
+    
+    while(i<j){
+        if(arr[i]>d){
+            cnt++;
+            i++;
+            continue;
+        }
+        int req = d/arr[i];
+        if (j - i >= req)
+            cnt++;
+        i++;
+        j -= req;
     }
-    else {
-        return p1.first<p2.first;
-    }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
-    for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
-    }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
-    // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
-    }
-    cout<< ans<<endl;
+    cout<<max(res,cnt)<<endl;
 }
 int main()
 {
     fast_cin();
-    ll t;
-    cin >> t;
+    ll t = 1;
     for (int it = 1; it <= t; it++)
     {
         solve();

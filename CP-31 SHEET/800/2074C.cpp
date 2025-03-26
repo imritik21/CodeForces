@@ -38,41 +38,59 @@ double eps = 1e-12;
     cout.tie(NULL)
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
+int findMSB(int n)
+{
+    if (n == 0)
+        return 0; // MSB of 0 is 0
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
+    int msb = 0;
+    while (n > 1)
+    {
+        n >>= 1; // Right shift until only the MSB remains
+        msb++;
     }
-    else {
-        return p1.first<p2.first;
-    }
+    return (1 << msb); // Return 2^msb (actual value of MSB bit)
 }
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
-    for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
-    }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
+#define msb(mask) (63 - __builtin_clzll(mask))
+void solve()
+{
+    //  8 - 1000
+    int n;
+    cin>>n;
+    int cntBit = __builtin_popcount(n);
+    int req = log2(n);
+    // cout<<cntBit<<" "<<req<<endl;
+    // if (cntBit == 1)
+    // {
+    //     cout << -1 << endl;
+    //     return;
     // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
+    // if(cntBit==req){
+    //     cout<<-1<<endl;
+    //     return;
+    // }
+    /*
+    int x;
+    cin>>x;
+    int m = msb(x);
+    int y = (1<<m)-1;
+    int z = x^y;
+    if(x+y > z && y+z > x && x+z > y){
+        cout<<y<<nl;
     }
-    cout<< ans<<endl;
+    else{
+        cout<<-1<<nl;
+    }
+    */
+    int m = log2(n);
+    // cout<<m<<" "<<req<<endl;
+    int y = (1<<m)-1;
+    // cout<<y<<endl;
+    int z = n^y;// xor
+    if(n+y>z && y+z>n && n+z>y){
+        cout<<y<<endl;
+    }
+    else cout<<-1<<endl;
 }
 int main()
 {

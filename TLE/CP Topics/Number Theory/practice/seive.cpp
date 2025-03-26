@@ -15,7 +15,7 @@ void seive(){
         }
     }
 }
-void 
+// void 
 int main(){
     int tc;
     seive();

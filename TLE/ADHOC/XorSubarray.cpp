@@ -39,40 +39,29 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-bool static  mycomp(pair<ll,ll>p1,pair<ll,ll>p2){
-    if(p1.first==p2.first){
-        return p1.second>p2.second;
+void solve()
+{
+    int n,z;
+    cin>>n>>z;
+    vector<int> arr(n);
+    forn(i,n)cin>>arr[i];
+    pair<int,int> p = {INT_MAX,-1};
+    int xorr=0;
+    for(int i=0;i<z;i++){
+        xorr^=arr[i];
     }
-    else {
-        return p1.first<p2.first;
+    p.first=xorr;
+    p.second=1;
+    for(int i=z;i<n;i++){
+        // remove previous ele xor and add new xor
+        // and update if new minimum xorr with index
+        xorr^=arr[i-z];
+        xorr^=arr[i];
+        if(xorr<p.first){
+            p= {xorr,(i+1)-z+1};
+        }
     }
-}
-void solve(){
-    ll n,p;
-    cin>>n>>p;
-    vector<ll>arr(n),brr(n);
-    vector<pair<ll,ll>> vp;
-    for(ll i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    for(ll i=0;i<n;i++){
-        cin>>brr[i];
-    }
-    for(int i=0;i<n;i++){
-        vp.push_back({min(brr[i],p),arr[i]});
-    }
-    // if(n==1){
-    //     cout<<p<<endl;return ;
-    // }
-    sort(begin(vp),end(vp),mycomp);
-    ll ans=p;
-    ll rem=n-1;
-    for(int i=0;i<n-1;i++){
-        ans+=min(vp[i].second,rem)*vp[i].first;
-        rem-=min(rem,vp[i].second);
-        // if(rem<=0)break;
-    }
-    cout<< ans<<endl;
+    cout<<p.second<<endl;
 }
 int main()
 {
