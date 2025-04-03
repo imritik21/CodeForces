@@ -130,7 +130,6 @@ private:
     // Update pheromone trails based on the tours of all ants.
     void updatePheromones(const vector<vector<int>> &allTours, const vector<double> &allTourLengths)
     {
-        // Evaporation: reduce all pheromone trails.
         for (int i = 0; i < numCities; i++)
         {
             for (int j = 0; j < numCities; j++)
@@ -138,7 +137,6 @@ private:
                 pheromones[i][j] *= (1.0 - evaporationRate);
             }
         }
-        // Deposit pheromone based on each ant's tour quality.
         for (int ant = 0; ant < numAnts; ant++)
         {
             double contribution = Q / allTourLengths[ant];

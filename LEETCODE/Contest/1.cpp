@@ -11,11 +11,8 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
     
-    map<string,int> mp;
-    mp["cat"]=2;
-    map<string,int> cnt;
-    cnt["cat"]=1;
-    if(mp==cnt)cout<<"YES"<<endl;
-    else cout<<"NO"<<endl;
+    string s = "aabaa";
+    string curr = s.substr(0,s.size());
+    cout<<curr<<endl;
     return 0;
 }

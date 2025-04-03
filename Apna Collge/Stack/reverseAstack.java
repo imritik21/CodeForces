@@ -1,5 +1,7 @@
 import java.util.*;
 
+import implementation.stack;
+
 public class reverseAstack {
     public static void pushBottom(Stack<Integer> s,int data){
         // base case when we empty the stack we'll push the data
@@ -22,6 +24,14 @@ public class reverseAstack {
         reverseStack(st);
         // wapas aate hue bottom pe push
         pushBottom(st, top);
+    }
+    public void reverseAstack(Stack<Integer> st){
+        if(st.isEmpty()){
+            return;
+        }
+        int top = st.pop();
+        reverseAstack(st);
+        pushAtBtm(st,top);
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
